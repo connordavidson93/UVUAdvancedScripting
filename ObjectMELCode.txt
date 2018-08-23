@@ -156,3 +156,6 @@ select -add -sym Log.f[0:19] ;
 scale -r -p 2.000001cm -1.419371cm 3.495538cm 1.088005 1.088005 1.088005 ;
 scale -r -p 2.000001cm -1.419371cm 3.495538cm 1 1 1.091805 ;
 select -cl -sym  ;
+select -r Log ;
+parent Log Axe ;
+select -cl -sym  ;
