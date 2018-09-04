@@ -1,0 +1,41 @@
+global proc string StarDestroyer(){
+	string $objects[];
+	
+	polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1 -name "StarDest";
+	setAttr "StarDest.scaleX" 3 ;
+	setAttr "StarDest.scaleZ" 3 ;
+	select -r StarDest.vtx[3] ;
+	select -tgl StarDest.vtx[1] ;
+	move -r 4 0 4 ;
+	scale -r -p 5.765955cm 0cm 5.747007cm 1 0.323515 1 ;
+	string $sels[] = `select -r StarDest`;
+	$objects[0] = $sels[0];
+	
+	polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1 -name "Bridge";
+	setAttr "Bridge.rotateY" 45;
+	scale -r 2.4 0.7 1 ;
+	move -r 0 0.67 0 ;
+	$sels = `select -r Bridge`;
+	$objects[1] = $sels[0];
+	
+	//print($objects);
+    $objects = `polyUnite -ch 1 -mergeUVSets 1 -centerPivot -name "StarDestroyer" StarDest Bridge`;
+	delete -ch $objects;
+	
+	return $objects[0];
+}
+StarDestroyer();
+global proc DuplicateStarDest (){
+	string $obj = `StarDestroyer`;
+	int $randNum = rand (1, 45);
+	for ($i=0; $i <$randNum; $i++){
+		string $fleet[] = `duplicate -rr $obj`;
+		int $xMove = rand(-15, 15);
+		int $yMove = rand(-15, 15);
+		int $zMove = rand(-15, 15);
+		
+		move -r $xMove $yMove $zMove $fleet[0];
+	}
+	print ("Duplicated " + $obj + " " + $randNum + " times.");
+}
+DuplicateStarDest();
