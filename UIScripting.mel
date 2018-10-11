@@ -1,0 +1,46 @@
+global proc SequenceRenameUI(){
+	string $mainWindow = "Renamer";
+	if(`window -exists $mainWindow)
+		deleteUI $mainWindow;
+	
+	$mainWindow = `window -title "RenameWindow" $mainWindow;
+	
+	string $mainColumn = `columnLayout -parent $mainWindow`;
+	string $newName = "mer";
+	$newName = `textFieldButtonGrp -parent $mainColumn -buttonLayout "NewName" -buttonCommand "Rename"() $newName`;
+	showWindow $mainWindow;
+}
+SequenceRenameUI();
+
+
+
+global proc RandomPlaceUI(){
+	string $mainWindow = "RandPlaceGenerator";
+	
+	if(`window -exists $mainWindow`)
+		deleteUI $mainWindow;
+		
+	$mainWindow = `window -title "Random Placement" $mainWindow`;
+	
+	string $mainColumn = `columnLayout -parent $mainWindow -adjustableColumn 1`;
+	
+	string $duplicateNumber = `intFieldGrp -parent $mainColumn -value 1 label "Number of Duplicates"`;
+	
+	string $rangeRowFirst = `rowLayout -parent $mainColumn -numberOfColumns 7`;
+	
+	text -parent $rangeRowFirst -label "Range Minimum";
+	string $xMinRange = `floatField -parent $rangeRowFirst -precision 2 -value 0`;
+	
+	text -parent $rangeRowSecond -label "Range Maximum";
+	string $xMaxRange = `floatField -parent $rangeRowSecond -precision 2 -value 0`;
+	
+	text -parent $rangeRowSecond -label "X";
+	string $yMaxRange = `floatField -parent $rangeRowSecond precision 2 -value 0`;
+	
+	text -parent $rangeRowSecond -label "Y";
+	string $zMaxRange = `floatField -parent $rangeRowSecond precision 2 -value 0`;
+	
+	string $button = `button -parent $mainColumn -label "Generate" -command ()
+
+
+}
